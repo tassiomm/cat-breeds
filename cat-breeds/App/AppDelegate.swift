@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          MARK: Um incremento dessa função poderia ser criar um coordinator
          para gerenciar a rotas/direção de cada view.
          */
-        let viewController = ViewController()
+        let viewController = BreedsListingViewController(viewModel: BreedsListingViewModelImpl())
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
 
