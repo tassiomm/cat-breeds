@@ -25,7 +25,7 @@ final class HTTPClient: NetworkClient {
     // and keeping a opaque type
     func request<Response>(_ request: some NetworkRequest<Response>) -> AnyPublisher<Response, NetworkError> {
         let domain = Constants.networkMainDomain
-        let urlRequest = URLRequest(url: URL(fileURLWithPath: domain + request.path))
+        let urlRequest = URLRequest(url: URL(string: domain + request.path)!)
 
         return session.dataTask(for: urlRequest)
             .tryMap { data, response in

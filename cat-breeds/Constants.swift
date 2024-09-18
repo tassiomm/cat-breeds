@@ -6,5 +6,5 @@
 //
 
 enum Constants {
-    static let networkMainDomain = "https://mockapi.io/projects/66e998e387e41760944a1b26"
+    static let networkMainDomain = "https://66e998e387e41760944a1b25.mockapi.io/cats"
 }
