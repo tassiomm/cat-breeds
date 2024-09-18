@@ -15,7 +15,6 @@ protocol NetworkClient {
 }
 
 final class HTTPClient: NetworkClient {
-    let domain = ""
     let session: NetworkSession
 
     init(session: NetworkSession = URLSession.shared) {
@@ -25,6 +24,7 @@ final class HTTPClient: NetworkClient {
     // Enforce consistent class implementation keeping the compiler fast
     // and keeping a opaque type
     func request<Response>(_ request: some NetworkRequest<Response>) -> AnyPublisher<Response, NetworkError> {
+        let domain = Constants.networkMainDomain
         let urlRequest = URLRequest(url: URL(fileURLWithPath: domain + request.path))
 
         return session.dataTask(for: urlRequest)
