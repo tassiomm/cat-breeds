@@ -16,6 +16,7 @@
 		8B1772512C99E20D002EAFEB /* cat_breedsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1772502C99E20D002EAFEB /* cat_breedsUITestsLaunchTests.swift */; };
 		8BBDB2F82C9A3BAA0006C0E7 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBDB2F62C9A3BAA0006C0E7 /* HTTPClient.swift */; };
 		8BBDB2F92C9A3BAA0006C0E7 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBDB2F42C9A3BAA0006C0E7 /* NetworkRequest.swift */; };
+		8BBDB2FD2C9A3E310006C0E7 /* NetworkClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBDB2FC2C9A3E310006C0E7 /* NetworkClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		8B1772502C99E20D002EAFEB /* cat_breedsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cat_breedsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8BBDB2F42C9A3BAA0006C0E7 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		8BBDB2F62C9A3BAA0006C0E7 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		8BBDB2FC2C9A3E310006C0E7 /* NetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		8B1772432C99E20D002EAFEB /* cat-breedsTests */ = {
 			isa = PBXGroup;
 			children = (
+				8BBDB2FC2C9A3E310006C0E7 /* NetworkClientTests.swift */,
 				8B1772442C99E20D002EAFEB /* cat_breedsTests.swift */,
 			);
 			path = "cat-breedsTests";
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BBDB2FD2C9A3E310006C0E7 /* NetworkClientTests.swift in Sources */,
 				8B1772452C99E20D002EAFEB /* cat_breedsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
