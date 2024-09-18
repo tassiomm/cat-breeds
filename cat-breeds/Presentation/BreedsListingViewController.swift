@@ -11,7 +11,7 @@ import Combine
 class BreedsListingViewController: UIViewController {
     private let viewModel: BreedsListingViewModel
 
-    private let tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(BreedsCell.self, forCellReuseIdentifier: BreedsCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
@@ -19,7 +19,14 @@ class BreedsListingViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.addSubview(refreshControl)
         return tableView
+    }()
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        return refresh
     }()
 
     private var cancellables = Set<AnyCancellable>()
@@ -41,20 +48,21 @@ class BreedsListingViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
 
-        addSubviewAndSetConstraints()
+        addSubviewsAndSetConstraints()
         registerObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.viewWillAppear()
+        refreshControl.beginRefreshing()
+        viewModel.refreshData()
     }
 
-    private func addSubviewAndSetConstraints() {
+    private func addSubviewsAndSetConstraints() {
         view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -66,11 +74,16 @@ class BreedsListingViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
+                self?.refreshControl.endRefreshing()
             }.store(in: &cancellables)
+    }
+
+    @objc func refresh(_ sender: AnyObject) {
+        self.viewModel.refreshData()
     }
 }
 
-// MARK: - DELEGATES
+// MARK: - DATA SOURCE AND DELEGATES
 
 extension BreedsListingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,65 +112,5 @@ extension BreedsListingViewController: UITableViewDataSource, UITableViewDelegat
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
-    }
-}
-
-
-// MARK: - CELL
-
-class BreedsCell: UITableViewCell {
-    static let reuseIdentifier = "TopSalesTableViewCell"
-
-    private lazy var breedImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
-
-    private lazy var title: UILabel = {
-        var title = UILabel()
-        title.numberOfLines = 2
-        return title
-    }()
-
-    private lazy var contentStackView: UIStackView = {
-        var stack = UIStackView(arrangedSubviews: [breedImage, title])
-        stack.spacing = 20
-        stack.axis = .horizontal
-        stack.distribution = .fill
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = .none
-        self.backgroundColor = UIColor.lightGray
-        addSubviewsAndConstraints()
-    }
-
-    private func addSubviewsAndConstraints() {
-        contentView.addSubview(contentStackView)
-
-        NSLayoutConstraint.activate([
-            breedImage.widthAnchor.constraint(equalToConstant: 50),
-            breedImage.heightAnchor.constraint(equalToConstant: 100)
-        ])
-
-        NSLayoutConstraint.activate([
-            contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-        ])
-    }
-
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func populate(with breed: BreedModel) {
-        title.text = breed.name
     }
 }

@@ -24,6 +24,7 @@
 		8BBDB30C2C9AF97C0006C0E7 /* FetchBreedsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBDB30B2C9AF9650006C0E7 /* FetchBreedsUseCase.swift */; };
 		8BBDB3122C9B1A7F0006C0E7 /* BreedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBDB3112C9B1A7F0006C0E7 /* BreedModel.swift */; };
 		8BBDB3142C9B48410006C0E7 /* BreedsListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBDB3132C9B48370006C0E7 /* BreedsListingViewModel.swift */; };
+		8BBDB3182C9B757D0006C0E7 /* BreedsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBDB3172C9B757D0006C0E7 /* BreedsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		8BBDB30B2C9AF9650006C0E7 /* FetchBreedsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchBreedsUseCase.swift; sourceTree = "<group>"; };
 		8BBDB3112C9B1A7F0006C0E7 /* BreedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedModel.swift; sourceTree = "<group>"; };
 		8BBDB3132C9B48370006C0E7 /* BreedsListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsListingViewModel.swift; sourceTree = "<group>"; };
+		8BBDB3172C9B757D0006C0E7 /* BreedsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 		8BBDB30D2C9B19D80006C0E7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				8BBDB3172C9B757D0006C0E7 /* BreedsCell.swift */,
 				8BBDB3132C9B48370006C0E7 /* BreedsListingViewModel.swift */,
 				8B1772312C99E20A002EAFEB /* BreedsListingViewController.swift */,
 			);
@@ -341,6 +344,7 @@
 				8BBDB3062C9A78E00006C0E7 /* FetchBreedsRequest.swift in Sources */,
 				8BBDB2FF2C9A6BC50006C0E7 /* Constants.swift in Sources */,
 				8BBDB3042C9A784C0006C0E7 /* FetchBreedsService.swift in Sources */,
+				8BBDB3182C9B757D0006C0E7 /* BreedsCell.swift in Sources */,
 				8BBDB30C2C9AF97C0006C0E7 /* FetchBreedsUseCase.swift in Sources */,
 				8BBDB3122C9B1A7F0006C0E7 /* BreedModel.swift in Sources */,
 				8B1772322C99E20A002EAFEB /* BreedsListingViewController.swift in Sources */,

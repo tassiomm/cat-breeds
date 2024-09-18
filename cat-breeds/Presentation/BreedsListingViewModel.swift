@@ -11,7 +11,7 @@ protocol BreedsListingViewModel {
     var reloadData: PassthroughSubject<Void, Never> { get }
     var breeds: [BreedModel] { get }
 
-    func viewWillAppear()
+    func refreshData()
 }
 
 class BreedsListingViewModelImpl: BreedsListingViewModel {
@@ -32,11 +32,11 @@ class BreedsListingViewModelImpl: BreedsListingViewModel {
         self.fetchBreedsUseCase = fetchBreedsUseCase
     }
 
-    func viewWillAppear() {
+    func refreshData() {
         loadBreeds()
     }
 
-    func loadBreeds() {
+    private func loadBreeds() {
         fetchBreedsUseCase.execute()
             .sink(receiveCompletion: { completion in
                 switch completion {
