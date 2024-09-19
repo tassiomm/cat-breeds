@@ -54,7 +54,6 @@ class BreedsListingViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshControl.beginRefreshing()
         viewModel.refreshData()
     }
 
@@ -62,7 +61,7 @@ class BreedsListingViewController: UIViewController {
         view.addSubview(tableView)
 
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -71,7 +70,6 @@ class BreedsListingViewController: UIViewController {
 
     private func registerObservers() {
         viewModel.reloadData
-            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
                 self?.refreshControl.endRefreshing()

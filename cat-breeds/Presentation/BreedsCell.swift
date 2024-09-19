@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BreedsCell: UITableViewCell {
+final class BreedsCell: UITableViewCell {
     static let reuseIdentifier = "TopSalesTableViewCell"
 
     private lazy var breedImage: AsyncImageView = {
@@ -67,52 +67,6 @@ class BreedsCell: UITableViewCell {
         title.text = breed.name
         if let url = URL(string: breed.image) {
             breedImage.load(url: url)
-        }
-
-    }
-}
-
-class AsyncImageView: UIImageView {
-    private lazy var imageLoadingView = {
-        let loadingView = UIActivityIndicatorView()
-        loadingView.style = .medium
-        loadingView.layer.zPosition = .infinity
-        loadingView.translatesAutoresizingMaskIntoConstraints = false
-        return loadingView
-    }()
-
-    // Initialize with code
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupImageView()
-    }
-
-    // Initialize with storyboard or XIB
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupImageView()
-    }
-
-    private func setupImageView() {
-        addSubview(imageLoadingView)
-        NSLayoutConstraint.activate([
-            imageLoadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageLoadingView.centerYAnchor.constraint(equalTo: centerYAnchor)
-        ])
-    }
-
-    // MARK: - HANDLE LOADING OF IMAGE IN BACKGROUND
-    func load(url: URL) {
-        imageLoadingView.startAnimating()
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.imageLoadingView.stopAnimating()
-                        self?.image = image
-                    }
-                }
-            }
         }
     }
 }

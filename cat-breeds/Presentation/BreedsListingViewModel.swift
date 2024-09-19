@@ -5,6 +5,7 @@
 //  Created by Developer on 18/09/24.
 //
 
+import Foundation
 import Combine
 
 protocol BreedsListingViewModel {
@@ -14,7 +15,7 @@ protocol BreedsListingViewModel {
     func refreshData()
 }
 
-class BreedsListingViewModelImpl: BreedsListingViewModel {
+final class BreedsListingViewModelImpl: BreedsListingViewModel {
     private var cancellable = Set<AnyCancellable>()
 
     // Data
@@ -38,6 +39,7 @@ class BreedsListingViewModelImpl: BreedsListingViewModel {
 
     private func loadBreeds() {
         fetchBreedsUseCase.execute()
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure:

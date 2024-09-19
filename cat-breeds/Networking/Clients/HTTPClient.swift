@@ -25,8 +25,15 @@ final class HTTPClient: NetworkClient {
     // and keeping a opaque type
     func request<Response>(_ request: some NetworkRequest<Response>) -> AnyPublisher<Response, NetworkError> {
         let domain = Constants.networkMainDomain
-        let urlRequest = URLRequest(url: URL(string: domain + request.path)!)
 
+        // MARK: URL ERROR HANDLING
+        guard let url = URL(string: domain + request.path) else {
+            return Fail(outputType: Response.self, failure: NetworkError.urlMalformed)
+                .eraseToAnyPublisher()
+        }
+
+        // MARK: TRIGGER REQUEST PUBLISHER
+        let urlRequest = URLRequest(url: url)
         return session.dataTask(for: urlRequest)
             .tryMap { data, response in
                 let httpResponse = response as? HTTPURLResponse
@@ -44,22 +51,7 @@ final class HTTPClient: NetworkClient {
                 }
             }
             .eraseToAnyPublisher()
-
     }
 }
 
-protocol NetworkSession {
-    typealias SessionResponse = URLSession.DataTaskPublisher.Output
-    func dataTask(for request: URLRequest) -> AnyPublisher<SessionResponse, URLError>
-}
 
-extension URLSession: NetworkSession {
-    func dataTask(for request: URLRequest) -> AnyPublisher<SessionResponse, URLError> {
-        dataTaskPublisher(for: request).eraseToAnyPublisher()
-    }
-}
-
-enum NetworkError: Error, Equatable {
-    case genericError
-    case badServerResponse
-}
