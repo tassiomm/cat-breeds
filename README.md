@@ -26,3 +26,7 @@ O aplicativo consome de uma API para Mocks: "https://66e998e387e41760944a1b25.mo
 - Injeção de indepedência: no momento, o projeto conta com injeção de forma a registrar apenas singletons e sem parametros. Em um sistema mais completos a injeção deve utilizar o padrão de factories para gerar a instâncias quando for usado. Isso é um problema principalmente se a instância depende de outro paramêtros definidos no fluxo do aplicativo. Para isso, uma mudança mais complexa se faz necessária para permitir tais mudanças. O uso do framework "Swinject" é uma alternativa viável.
 
 - Adição de botão "favorito para marcar raça de gato favorita. A função seria utilizada para uma demonstração de uso de armazenamento local com o uso de CoreData para marcar os favoritos. A demonstração poderia ser feita utilizando UserDefaults. No entanto, devo notar que esse não é o uso ideal do UserDefaults já que não foi feito para armazenar dados massivos, e sim preferencias de personalização/comportamentos do uso do aplicativo em si.
+
+### Testes
+
+- Testes unitários foram escritos para a classe de NetworkClient. Melhorias futuras incluem definir testes mais abrangentes e testes para outras classes e métodos.

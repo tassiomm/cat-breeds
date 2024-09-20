@@ -7,11 +7,11 @@
 
 import Foundation
 
-// Determina um protocol para ser usado de transformação para tipo específico
 protocol NetworkRequest<Response> where Response: Decodable {
     associatedtype Response
     var path: String { get }
     var method: HTTPMethod { get }
+    // A resposta da requisição é decodificada por um JSONDecoder para o tipo definido no genérico "Response"
     var responseType: Response.Type { get }
 }
 
