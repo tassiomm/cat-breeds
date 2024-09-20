@@ -14,8 +14,6 @@ protocol FetchBreedsUseCase {
 final class FetchBreedsUseCaseImpl: FetchBreedsUseCase {
     @Inject private var service: FetchBreedsService
 
-    init() {}
-
     func execute() -> AnyPublisher<[BreedModel], any Error> {
         service.execute()
             .map { $0.map(BreedModel.init(mapping:)) }

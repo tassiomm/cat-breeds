@@ -14,8 +14,6 @@ protocol FetchBreedsService {
 final class FetchBreedsServiceImpl: FetchBreedsService {
     @Inject var client: NetworkClient
 
-    init() {}
-
     func execute() -> AnyPublisher<[BreedEntity], any Error> {
         client.request(FetchBreedsRequest())
             .mapError { ($0 as Error) }

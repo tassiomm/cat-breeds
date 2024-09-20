@@ -32,8 +32,6 @@ final class BreedsListingViewModelImpl: BreedsListingViewModel {
         }
     }
 
-    init() {}
-
     func refreshData() {
         loadBreeds()
     }

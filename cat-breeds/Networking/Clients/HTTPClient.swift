@@ -17,8 +17,6 @@ protocol NetworkClient {
 final class HTTPClient: NetworkClient {
     @Inject var session: NetworkSession
 
-    init() {}
-
     // Enforce consistent class implementation keeping the compiler fast
     // and keeping a opaque type
     func request<Response>(_ request: some NetworkRequest<Response>) -> AnyPublisher<Response, NetworkError> {

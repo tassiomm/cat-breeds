@@ -11,7 +11,6 @@
 		8B1772322C99E20A002EAFEB /* BreedsListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1772312C99E20A002EAFEB /* BreedsListingViewController.swift */; };
 		8B1772372C99E20C002EAFEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B1772362C99E20C002EAFEB /* Assets.xcassets */; };
 		8B17723A2C99E20C002EAFEB /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 8B1772392C99E20C002EAFEB /* Base */; };
-		8B1772452C99E20D002EAFEB /* cat_breedsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1772442C99E20D002EAFEB /* cat_breedsTests.swift */; };
 		8B17724F2C99E20D002EAFEB /* cat_breedsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17724E2C99E20D002EAFEB /* cat_breedsUITests.swift */; };
 		8B1772512C99E20D002EAFEB /* cat_breedsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1772502C99E20D002EAFEB /* cat_breedsUITestsLaunchTests.swift */; };
 		8B86745D2C9DB292005057D5 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B86745C2C9DB28B005057D5 /* Injection.swift */; };
@@ -56,7 +55,6 @@
 		8B1772392C99E20C002EAFEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B17723B2C99E20C002EAFEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "cat-breeds/App/Info.plist"; sourceTree = SOURCE_ROOT; };
 		8B1772402C99E20D002EAFEB /* cat-breedsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cat-breedsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B1772442C99E20D002EAFEB /* cat_breedsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cat_breedsTests.swift; sourceTree = "<group>"; };
 		8B17724A2C99E20D002EAFEB /* cat-breedsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cat-breedsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B17724E2C99E20D002EAFEB /* cat_breedsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cat_breedsUITests.swift; sourceTree = "<group>"; };
 		8B1772502C99E20D002EAFEB /* cat_breedsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cat_breedsUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				8BBDB2FC2C9A3E310006C0E7 /* NetworkClientTests.swift */,
-				8B1772442C99E20D002EAFEB /* cat_breedsTests.swift */,
 			);
 			path = "cat-breedsTests";
 			sourceTree = "<group>";
@@ -392,7 +389,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BBDB2FD2C9A3E310006C0E7 /* NetworkClientTests.swift in Sources */,
-				8B1772452C99E20D002EAFEB /* cat_breedsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
