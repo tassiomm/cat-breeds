@@ -1,6 +1,6 @@
 # Cat Breeds
 
-Esse projeto é um aplicativo simple que consome uma API com informações de raças de gatos e exibe essas informações em uma lista. A lista irá conter o nome da raça e uma foto (ilustrativa) do gato.
+Esse projeto é um aplicativo simple que consome uma API com informações de raças de gatos e exibe essas informações em uma lista. A lista irá conter o nome da raça e uma foto (ilustrativa) do gato. Para atualizar a lista, arraste a lista pra baixo até que a animação de carregamento execute.
 
 ## Arquitetura
 
@@ -8,9 +8,15 @@ O aplicativo demonstra o uso de uma aquitetura VIPER e UIKit para exibição da 
 
 _[Mais interno]_  **Networking** ---> **Services** ---> **Domain** ---> **Presentation**  _[Mais externo]_
 
-O app ainda poderá conter um módulo global **"App"** que compartilha classes e modelos entre todos os módulos. O Wrapper de injeção de independênci, por exemplo, segue o formato de compartilhamento. Esse compartilhamento deverá ficar restritito e estruturação do wrapper. As injeções em si são restrita ao protocolos que o módulo consegue exergar de forma que uma classe do módulo Networking não terá visão para injetar algo do módulo de serviço. Isso mantem o isolamento módular e que um módulo externo não saiba detalhes de implementação de um módulo interno.
+O app ainda poderá conter um módulo global **"App"** que compartilha classes e modelos entre todos os módulos. 
+
+O Wrapper de injeção de independência, por exemplo, segue o formato de compartilhamento. Esse compartilhamento deverá ficar restritito e estruturação do wrapper. As injeções em si são restrita ao protocolos que o módulo consegue exergar de forma que uma classe do módulo Networking não terá visão para injetar algo do módulo de serviço. Isso mantem o isolamento módular e que um módulo externo não saiba detalhes de implementação de um módulo interno.
 
 Apesar do "over-engineering" para um aplicativo tão simples, o objetivo é demonstrar uma opção viável de um aplicativo escalável, dinâmico e de fácil manuteção.
+
+## Dados
+
+O aplicativo consome de uma API para Mocks: "https://66e998e387e41760944a1b25.mockapi.io/cats/breeds"
 
 ## Melhorias futuras
 
@@ -19,4 +25,4 @@ Apesar do "over-engineering" para um aplicativo tão simples, o objetivo é demo
 
 - Injeção de indepedência: no momento, o projeto conta com injeção de forma a registrar apenas singletons e sem parametros. Em um sistema mais completos a injeção deve utilizar o padrão de factories para gerar a instâncias quando for usado. Isso é um problema principalmente se a instância depende de outro paramêtros definidos no fluxo do aplicativo. Para isso, uma mudança mais complexa se faz necessária para permitir tais mudanças. O uso do framework "Swinject" é uma alternativa viável.
 
-- Adição de botão favorito para marcar raça de gato favorita. A função seria utilizada para uma demonstração de uso de armazenamento local com o uso de CoreData para marcar os favoritos. A demonstração poderia ser feita utilizando UserDefaults. No entanto, devo notar que esse não é o uso ideal do UserDefaults já que não foi feito para armazenar dados massivos, e sim preferencias de personalização/comportamentos do uso do aplicativo em si.
+- Adição de botão "favorito para marcar raça de gato favorita. A função seria utilizada para uma demonstração de uso de armazenamento local com o uso de CoreData para marcar os favoritos. A demonstração poderia ser feita utilizando UserDefaults. No entanto, devo notar que esse não é o uso ideal do UserDefaults já que não foi feito para armazenar dados massivos, e sim preferencias de personalização/comportamentos do uso do aplicativo em si.
