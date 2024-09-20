@@ -20,13 +20,14 @@ final class NetworkClientTests: XCTestCase {
 
     override func setUp() {
         mockSession = MockSession()
-        client = HTTPClient(session: mockSession)
+        InjectionContainer.register(type: NetworkSession.self, value: mockSession)
+        client = HTTPClient()
     }
 
     func testStatusCodeNot200Prefix() async {
         let expect = expectation(description: "")
         mockSession.statusCode = 501
-        mockSession.data = MockRequest.validDataExemple
+        mockSession.data = MockRequest.validDataExample
 
         client.request(MockRequest())
             .sink { status in
@@ -47,7 +48,7 @@ final class NetworkClientTests: XCTestCase {
     func testStatusCodeSuccessful() async {
         let expect = expectation(description: "")
         mockSession.statusCode = 201
-        mockSession.data = MockRequest.validDataExemple
+        mockSession.data = MockRequest.validDataExample
 
         client.request(MockRequest())
             .sink { status in
@@ -101,6 +102,10 @@ class MockSession: NetworkSession {
             .setFailureType(to: URLError.self)
             .eraseToAnyPublisher()
     }
+
+    func dataTask(for url: URL) -> AnyPublisher<SessionResponse, URLError> {
+        fatalError()
+    }
 }
 
 struct MockRequest: NetworkRequest {
@@ -108,7 +113,7 @@ struct MockRequest: NetworkRequest {
     let method: HTTPMethod = .get
     let responseType = [String].self
 
-    static let validDataExemple = """
+    static let validDataExample = """
     [
         "some data",
         "some other data"

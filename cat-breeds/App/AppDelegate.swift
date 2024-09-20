@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func registerDependencies() {
+        InjectionContainer.register(type: NetworkSession.self, value: URLSession.shared)
         InjectionContainer.register(type: NetworkClient.self, value: HTTPClient())
         InjectionContainer.register(type: FetchBreedsService.self, value: FetchBreedsServiceImpl())
         InjectionContainer.register(type: FetchBreedsUseCase.self, value: FetchBreedsUseCaseImpl())

@@ -15,11 +15,9 @@ protocol NetworkClient {
 }
 
 final class HTTPClient: NetworkClient {
-    let session: NetworkSession
+    @Inject var session: NetworkSession
 
-    init(session: NetworkSession = URLSession.shared) {
-        self.session = session
-    }
+    init() {}
 
     // Enforce consistent class implementation keeping the compiler fast
     // and keeping a opaque type
