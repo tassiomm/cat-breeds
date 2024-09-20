@@ -22,6 +22,7 @@ class AsyncImageView: UIImageView {
     }
 
     // Initialize with storyboard or XIB
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupImageView()

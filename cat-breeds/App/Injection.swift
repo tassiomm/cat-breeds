@@ -32,7 +32,7 @@ internal struct InjectionContainer {
     fileprivate static func resolve<P>(type: P.Type) -> P {
         let key = String(String(describing: type.self))
         guard let value = injectedValues[key] as? P else {
-            fatalError("Must inject value")
+            fatalError("Must inject value using `InjectionContainer.register` method")
         }
         return value
     }
