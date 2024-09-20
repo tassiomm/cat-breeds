@@ -70,14 +70,30 @@ class BreedsListingViewController: UIViewController {
 
     private func registerObservers() {
         viewModel.reloadData
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.tableView.reloadData()
                 self?.refreshControl.endRefreshing()
             }.store(in: &cancellables)
+
+        viewModel.errorAlert
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] errorMessage in
+                self?.errorAlert(errorMessage)
+            }.store(in: &cancellables)
     }
 
-    @objc func refresh(_ sender: AnyObject) {
+    @objc private func refresh(_ sender: AnyObject) {
         self.viewModel.refreshData()
+    }
+
+    private func errorAlert(_ message: String) {
+        let uiAlert = UIAlertController(title: "Error",
+                                        message: message,
+                                        preferredStyle: .alert)
+
+        uiAlert.addAction(.init(title: "Ok", style: .cancel))
+        present(uiAlert, animated: true)
     }
 }
 

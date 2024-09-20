@@ -10,6 +10,8 @@ import Combine
 
 protocol BreedsListingViewModel {
     var reloadData: PassthroughSubject<Void, Never> { get }
+    var errorAlert: PassthroughSubject<String, Never> { get }
+
     var breeds: [BreedModel] { get }
 
     func refreshData()
@@ -20,6 +22,8 @@ final class BreedsListingViewModelImpl: BreedsListingViewModel {
 
     // Data
     var reloadData: PassthroughSubject<Void, Never> = .init()
+    var errorAlert: PassthroughSubject<String, Never> = .init()
+
     private(set) var breeds: [BreedModel] = [] {
         didSet {
             reloadData.send(() )
@@ -39,11 +43,10 @@ final class BreedsListingViewModelImpl: BreedsListingViewModel {
 
     private func loadBreeds() {
         fetchBreedsUseCase.execute()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
+            .sink(receiveCompletion: { [weak self] completion in
                 switch completion {
-                case .failure:
-                    print("handle error")
+                case .failure(let error):
+                    self?.errorAlert.send(error.localizedDescription)
                 default:
                     break
                 }

@@ -37,13 +37,14 @@ class AsyncImageView: UIImageView {
 
     // MARK: - HANDLE LOADING OF IMAGE IN BACKGROUND
     func load(url: URL) {
+        image = nil
         imageLoadingView.startAnimating()
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
-                        self?.imageLoadingView.stopAnimating()
                         self?.image = image
+                        self?.imageLoadingView.stopAnimating()
                     }
                 }
             }
