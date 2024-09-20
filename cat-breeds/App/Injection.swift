@@ -5,14 +5,17 @@
 //  Created by Developer on 20/09/24.
 //
 
+/*
+ Must register value using InjectionContainer.register method
+ Setting it's value using this Inject wrapper won't affect the container value
+ */
 @propertyWrapper struct Inject<Value> {
     private let value: Value
 
     var wrappedValue: Value {
         get { self.value }
         set {
-            // Must register value using InjectionContainer.register method
-            // Setting it using Inject Value won't affect the container value
+            // Shouldn't be used to set a injected value
         }
     }
 
