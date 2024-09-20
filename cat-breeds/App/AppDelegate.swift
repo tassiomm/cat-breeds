@@ -12,9 +12,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        registerDependencies()
 
         window = UIWindow(frame: UIScreen.main.bounds)
+
         /*
          MARK: Um incremento dessa função poderia ser criar um coordinator
          para gerenciar a rotas/direção de cada view.
@@ -24,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
 
         return true
+    }
+
+    private func registerDependencies() {
+        InjectionContainer.register(type: NetworkClient.self, value: HTTPClient())
+        InjectionContainer.register(type: FetchBreedsService.self, value: FetchBreedsServiceImpl())
+        InjectionContainer.register(type: FetchBreedsUseCase.self, value: FetchBreedsUseCaseImpl())
     }
 }
 

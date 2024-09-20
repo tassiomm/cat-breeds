@@ -12,11 +12,9 @@ protocol FetchBreedsService {
 }
 
 final class FetchBreedsServiceImpl: FetchBreedsService {
-    let client: NetworkClient
+    @Inject var client: NetworkClient
 
-    init(client: NetworkClient = HTTPClient()) {
-        self.client = client
-    }
+    init() {}
 
     func execute() -> AnyPublisher<[BreedEntity], any Error> {
         client.request(FetchBreedsRequest())

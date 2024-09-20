@@ -18,6 +18,8 @@ protocol BreedsListingViewModel {
 }
 
 final class BreedsListingViewModelImpl: BreedsListingViewModel {
+    @Inject private var fetchBreedsUseCase: FetchBreedsUseCase
+
     private var cancellable = Set<AnyCancellable>()
 
     // Data
@@ -30,12 +32,7 @@ final class BreedsListingViewModelImpl: BreedsListingViewModel {
         }
     }
 
-    // Injected
-    private let fetchBreedsUseCase: FetchBreedsUseCase
-
-    init(fetchBreedsUseCase: FetchBreedsUseCase = FetchBreedsUseCaseImpl()) {
-        self.fetchBreedsUseCase = fetchBreedsUseCase
-    }
+    init() {}
 
     func refreshData() {
         loadBreeds()

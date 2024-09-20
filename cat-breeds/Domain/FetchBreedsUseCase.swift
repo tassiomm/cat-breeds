@@ -12,11 +12,9 @@ protocol FetchBreedsUseCase {
 }
 
 final class FetchBreedsUseCaseImpl: FetchBreedsUseCase {
-    let service: FetchBreedsService
+    @Inject private var service: FetchBreedsService
 
-    init(service: FetchBreedsService = FetchBreedsServiceImpl()) {
-        self.service = service
-    }
+    init() {}
 
     func execute() -> AnyPublisher<[BreedModel], any Error> {
         service.execute()
