@@ -4,7 +4,7 @@ Esse projeto é um aplicativo simple que consome uma API com informações de ra
 
 ## Arquitetura
 
-O aplicativo demonstra o uso de uma aquitetura VIPER e UIKit para exibição da View. Cada pasta pode representar um módulo em uma arquitura modula. E o módulo mais interno é totalmente independente de modulos externos. Seguindo a seguinte ordem:
+O aplicativo demonstra o uso de uma aquitetura MVVM e UIKit para exibição da View. Cada pasta pode representar um módulo em uma arquitura modula. E o módulo mais interno é totalmente independente de modulos externos. Seguindo a seguinte ordem:
 
 _[Mais interno]_  **Networking** ---> **Services** ---> **Domain** ---> **Presentation**  _[Mais externo]_
 
